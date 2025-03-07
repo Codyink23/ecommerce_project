@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+
+{% endblock title %}
+
+{% block content %}
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Checkout</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Checkout Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 ">
+        <div class="col-lg-8">
+            <div class="row">
+                <!-- <div class="mb-4">
+
+                    <h4 class="font-weight-semi-bold mb-4 ">Billing Address</h4>
+                    <div class="row">
+                    
+                        <div class="col-md-6 form-group">
+                            <label>First Name</label>
+                            <input class="form-control" type="text" placeholder="John">
+                        </div>
+                     
+                        <div class="col-md-6 form-group">
+                            <label>Address</label>
+                            <input class="form-control" type="text" placeholder="example@email.com">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Mobile No</label>
+                            <input class="form-control" type="text" placeholder="+123 456 789">
+                        </div>
+                      
+                         {% comment %} <div class="col-md-6 form-group">
+                            <label>Country</label>
+                            <select class="custom-select">
+                                <option selected>United States</option>
+                                <option>Afghanistan</option>
+                                <option>Albania</option>
+                                <option>Algeria</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>City</label>
+                            <input class="form-control" type="text" placeholder="New York">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>State</label>
+                            <input class="form-control" type="text" placeholder="New York">
+                        </div> {% endcomment %}
+                        {% comment %} <div class="col-md-6 form-group">
+                            <label>ZIP Code</label>
+                            <input class="form-control" type="text" placeholder="123">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="newaccount">
+                                <label class="custom-control-label" for="newaccount">Create an account</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="shipto">
+                                <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+                            </div>
+                        </div> {% endcomment %}
+            </div>
+                </div>
+                <div class="collapse mb-4" id="shipping-address">
+                    <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>First Name</label>
+                            <input class="form-control" type="text" placeholder="John">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Last Name</label>
+                            <input class="form-control" type="text" placeholder="Doe">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>E-mail</label>
+                            <input class="form-control" type="text" placeholder="example@email.com">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Mobile No</label>
+                            <input class="form-control" type="text" placeholder="+123 456 789">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Address Line 1</label>
+                            <input class="form-control" type="text" placeholder="123 Street">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Address Line 2</label>
+                            <input class="form-control" type="text" placeholder="123 Street">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Country</label>
+                            <select class="custom-select">
+                                <option selected>United States</option>
+                                <option>Afghanistan</option>
+                                <option>Albania</option>
+                                <option>Algeria</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>City</label>
+                            <input class="form-control" type="text" placeholder="New York">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>State</label>
+                            <input class="form-control" type="text" placeholder="New York">
+                        </div>
+                     
+                    </div>
+                </div>  -->
+                {% for o in order_items %}
+
+                <div class="col-md-4 mx-2 my-2 card shadow">
+                    <div class="card-body d-md-flex justify-content-between">
+
+                        <div class="col-md-5">
+                            <img src="{{o.image}}" class="img-fluid" alt="An image">
+                        </div>
+                        <div class="col-md-7">
+                            <h4>{{o.item}}</h4>
+                            <p>Qty: {{o.quantity}}</p>
+                            <p>Price: &#8358;{{o.price}}</p>
+                            <p>Total: &#8358;{{o.total}}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+            <form class="mb-5 apply-coupon" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="code" class="form-control p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Apply Coupon</button>
+                    </div>
+                </div>
+            </form>
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Order Summary</h4>
+                </div>
+                <div class="card-body">
+                    <!-- <div class="d-flex justify-content-between">
+
+                        <h5 class="font-weight-medium mb-3">Products</h5>
+                        <h5 class="font-weight-medium mb-3">Products</h5>
+                        <h5 class="font-weight-medium mb-3">Quantity</h5>
+                        <h5 class="font-weight-medium mb-3">Price</h5>
+                    </div> -->
+                    <!--                     
+                    {% for product_id, item in cart_data.items %}
+                    <div class="my-4 d-flex justify-content-between">
+                        <img class="img-fluid" src="{{ item.image }}" alt="" style="width: 50px;">
+                        <h6>{{item.title}}</h6>
+                        <p>{{item.cleaned_quantity}}</p>
+                        <p>&#8358;{{item.total_price| floatformat:2}}</p>
+
+                    </div>
+                    {% endfor %} -->
+
+                    <div class="d-flex justify-content-between mb-1 pt-1">
+                        <h6 class="font-weight-medium">Tax</h6>
+                        <h6 class="font-weight-medium">Free</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">{{order.usd_price}}</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <h6 class="font-weight-medium">Discount</h6>
+                        <h6 class="font-weight-medium">&#8358;{{order.saved}}</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Total</h6>
+                        <h6 class="font-weight-medium">&#8358;{{order.price}}</h6>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Total</h5>
+                        <h5 class="font-weight-bold">&#8358;{{order.price}}</h5>
+                    </div>
+                    <a href="{% url 'ecommerce_app:cart' %}"
+                        class="btn btn-lg btn-block btn-success font-weight-bold my-3 py-3">Back to Cart</a>
+
+                </div>
+
+            </div>
+
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                </div>
+                <div class="card-body">
+                    <!-- <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                            <label class="custom-control-label" for="paypal">Paypal</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                            <label class="custom-control-label" for="directcheck">Direct Check</label>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                            <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                        </div>
+                    </div> -->
+                    <!-- <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                        <input type="hidden" name="public_key" value="FLWPUBK_TEST-SANDBOXDEMOKEY-X" />
+                        <input type="hidden" name="tx_ref" value="{{order.oid}}" />
+                        <input type="hidden" name="amount" value="{{order.price}}" />
+                        <input type="hidden" name="currency" value="NGN" />
+                        <input type="hidden" name="redirect_url"
+                            value="https://f1b9-197-242-108-14.ngrok-free.app/payment-completed/{{order.oid}}/" />
+                        <input type="hidden" name="meta[token]" value="54" />
+                        <input type="hidden" name="customer[name]" value="{{order.full_name}}" />
+                        <input type="hidden" name="customer[email]" value="{{order.email}}" />
+                        <button style="background-color: orange; color: white;"
+                            class="btn btn-lg btn-block font-weight-bold my-3 py-3" type="submit">Pay with
+                            Flutterwave (Credit Card or DebitCard) <i
+                                class="fa-solid fa-credit-card ml-2 text-white"></i></button>
+                    </form> -->
+
+                    <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                        {% csrf_token %}
+                        <input type="hidden" name="public_key"
+                            value="FLWPUBK_TEST-c0d5d7eac95d987111ee6beb0b2c49c1-X" />
+                        <input type="hidden" name="tx_ref" value="{{order.oid}}" />
+                        <input type="hidden" name="amount" value="{{order.price}}" />
+                        <input type="hidden" name="currency" value="NGN" />
+                        <input type="hidden" name="redirect_url"
+                            value="https://8887-41-217-79-13.ngrok-free.app/payment-completed/{{order.oid}}/" />
+                        <input type="hidden" name="meta[token]" value="54" />
+                        <input type="hidden" name="customer[name]" value="{{order.full_name}}" />
+                        <input type="hidden" name="customer[email]" value="{{order.email}}" />
+                        <button style="background-color: orange; color: white; border-radius: 8px;"
+                            class="btn btn-lg btn-block font-weight-bold my-3 py-3" type="submit">
+                            Pay with Flutterwave (Credit Card or Debit Card)
+                            <i class="fa-solid fa-credit-card ml-2 text-white"></i>
+                        </button>
+                    </form>
+
+
+
+                    <button onclick="makePaystackPayment()"
+                        style="background-color: rgb(5, 119, 156); color: white; border-radius: 8px;"
+                        class="btn btn-lg btn-block font-weight-bold my-3 py-3">Pay with Paystack
+                        <i class="fa-solid fa-credit-card ml-2 text-white"></i></button>
+                    <div id="paypal-button-container"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Checkout End -->
+
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://js.paystack.co/v2/inline.js"></script>
+
+<script>
+
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            console.log("Creating Order...");
+            return actions.order.create({
+                purchase_units: [
+                    {
+                        amount: {
+                            value: "{{order.usd_price}}"
+                        }
+                    }
+                ]
+            }).catch(function (error) {
+                console.error('Error creating order:', error);
+            });
+        },
+        onApprove: function (data, actions) {
+            console.log('Payment approved...');
+            return actions.order.capture().then(function (Detail) {
+                console.log('Payment captured:', Detail);
+                if (Detail.status === "COMPLETED") {
+                    window.location.href = `/payment-completed/{{order.oid}}/?status=${Detail.status}`;
+                }
+            }).catch(function (error) {
+                console.error('Error capturing payment:', error);
+            });
+        }
+    }).render('#paypal-button-container');
+
+    // Paystack initialization
+
+
+
+
+</script>
+
+<script>
+    function makePaystackPayment() {
+
+
+        const paystack = new PaystackPop()
+
+        paystack.newTransaction({
+            key: "pk_test_d8e77563bb63a6b828d251bbc797f251f7357166",
+            email: "{{order.email}}",
+            amount: "{{order_total}}",
+
+            onSuccess: (transaction) => {
+                console.log(transaction);
+                if (transaction.status == "success") {
+                    window.location.href = `/payment-completed/{{order.oid}}/?reference=${transaction.reference}`
+                }
+            },
+            // onLoad: (response) => {
+            //     console.log("onLoad: ", response);
+            // },
+            onCancel: () => {
+                console.log("onCancel");
+                Swal.fire({
+                    title: "Payment Cancelled",
+                    icon: "error",
+
+                })
+            },
+            onError: (error) => {
+                console.log("Error: ", error.message);
+            }
+        })
+
+    }
+</script>
+
+
+{% endblock content %}

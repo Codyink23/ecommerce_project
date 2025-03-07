@@ -1,0 +1,82 @@
+{% extends 'dashboard/base2.html' %}
+
+{% load static %}
+{% load humanize %}
+{{ form.media }}
+
+{% block title %}
+
+
+{% endblock title %}
+
+{% block content %}
+
+  <div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Create Product</h5>
+              <div class="card">
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {% if form.errors %}
+                  <div class="alert alert-danger" >
+                    {% for error in form.errors.values %}
+                    <strong>{{ error }}</strong>
+                    {% endfor %}
+
+                   {% endif %} 
+                  </div>
+                    <div class="mb-3 mx-3">
+                      <label  class="form-label">Product</label>
+                      {{form.name}}
+                    </div>
+                    <div class="mb-3 mx-3">
+                      <label  class="form-label">Description</label>
+                      {{form.description}}
+                    </div>
+                <div class="d-md-flex mx-3 justify-content-between">
+                    <div class="mb-3">
+                      <label  class="form-label">Price</label>
+                      {{form.price}}
+                    </div>
+                    <div class="mb-3">
+                      <label  class="form-label">Quantity</label>
+                      {{form.quantity}}
+                    </div>
+                    <div class=" mt-4 mb-3">
+                      <label  class="form-label">Category</label>
+                      {{form.category}}
+                    </div>
+                </div>
+                <div class="d-md-flex mb-3 mx-3 justify-content-between">
+                  <div class="row">
+                    <div class="col-md-4 mb-3 input-upload">
+                      <label  class="form-label">Image</label>
+                      {{form.image}}
+                    </div>
+                    <div class="col-md-4 mb-3 input-upload">
+                      <label  class="form-label">Image 2</label>
+                      {{form.image_two}}
+                    </div>
+                    <div class="col-md-4 mb-3 input-upload">
+                      <label  class="form-label">Image 3</label>
+                      {{form.image_three}}
+                    </div>
+                  </div>
+                    
+                  
+                </div>    
+                   
+                    <button type="submit" class="btn btn-primary mx-3 mb-3 mt-2 w-50 ">Submit</button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock content %}

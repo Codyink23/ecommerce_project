@@ -34,3 +34,4 @@ setuptools==68.2.2
 wheel==0.41.2
 # win-inet-pton @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/win_inet_pton_1699472992992/work
 zstandard==0.19.0
+Django==5.1.7

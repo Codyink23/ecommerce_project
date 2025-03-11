@@ -3,15 +3,14 @@ asgiref==3.8.1
 
 dj-database-url==2.3.0
 Django==5.1.7
+django-jazzmin==3.0.1
 gunicorn==23.0.0
 
 jsonpointer==2.1
 
 python-decouple==3.8
-
 setuptools==68.2.2
 sqlparse==0.5.3
-
 typing_extensions==4.12.2
 tzdata==2025.1
 wheel==0.41.2

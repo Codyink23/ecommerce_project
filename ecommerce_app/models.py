@@ -174,8 +174,8 @@ class Cartorder(models.Model):
     paid_status = models.BooleanField(default=False)
     order_date = models.DateTimeField(default=datetime.datetime.now())
     product_status = models.CharField(choices=STATUS_CHOICES, max_length=30, default='processing', null=True, blank=True)  
-    sku = ShortUUIDField(null=True, blank=True, length=5, prefix="SKU", max_length=20, alphabet="1234567890") 
-    oid = ShortUUIDField(null=True, blank=True, length=5, max_length=20, alphabet="1234567890")
+    sku = ShortUUIDField(null=True, blank=True, length=5, prefix="SKU", max_length=50, alphabet="1234567890") 
+    oid = ShortUUIDField(null=True, blank=True, length=5, max_length=50, alphabet="1234567890")
     
     stripe_payment_intent = models.CharField(max_length=1000, blank=True, null=True) 
     

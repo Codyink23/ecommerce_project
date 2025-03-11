@@ -15,12 +15,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cartorder',
             name='oid',
-            field=shortuuid.django_fields.ShortUUIDField(alphabet='1234567890', blank=True, length=22, max_length=20, null=True, prefix=''),
+            field=shortuuid.django_fields.ShortUUIDField(alphabet='1234567890', blank=True, length=22, max_length=25, null=True, prefix=''),
         ),
         migrations.AddField(
             model_name='cartorder',
             name='sku',
-            field=shortuuid.django_fields.ShortUUIDField(alphabet='1234567890', blank=True, length=22, max_length=20, null=True, prefix='SKU'),
+            field=shortuuid.django_fields.ShortUUIDField(alphabet='1234567890', blank=True, length=22, max_length=25, null=True, prefix='SKU'),
         ),
         migrations.AlterField(
             model_name='contact',

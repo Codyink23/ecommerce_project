@@ -32,7 +32,9 @@
     <link href="{% static 'files/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{% static 'files/css/style.css' %}" rel="stylesheet">
+    {% comment %} <link href="{% static 'files/css/style.css' %}" rel="stylesheet"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'files/css/style.css' %}">
+
     {% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 

@@ -240,7 +240,12 @@ DATABASES = {
     }
 }
 
+print("DATABASE_URL:", os.getenv('DATABASE_URL'))
+
 database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    raise ValueError("DATABASE_URL environment variable is not set.")
+print(f"DATABASE_URL: {database_url}")
 DATABASES["default"] = dj_database_url.parse(database_url)
 
 

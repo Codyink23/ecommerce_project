@@ -54,7 +54,7 @@ EMAIL_HOST ='smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'olaleyeolayinka897@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = 'bzvtarxqjijamfvm'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://f1b9-197-242-108-14.ngrok-free.app',

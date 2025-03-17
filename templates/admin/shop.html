@@ -9,6 +9,14 @@
 
 {% block content %}
 
+<style>
+    @media all and (max-width: 768px) {
+        .test {
+            margin-top: 80px;
+        }
+    }
+</style>
+
 <div class="container">
     <div class="card shadow">
         <div class="container shadow bg-warning ">
@@ -24,9 +32,9 @@
 
         </div>
         <div>
-            <div class="row    ">
-                <div class="col-md-4"></div>
-                <div class="col-md-4 mt-4">
+            <div class="row test  ">
+                <div class="col-md-4 "></div>
+                <div class="col-md-4 ">
                     <h3>{{request.user.username}}</h3>
                     <small>Covenant University Student</small>
                 </div>

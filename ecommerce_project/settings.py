@@ -33,12 +33,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = '2c87faff5080a0d72ad6cb18eb6a562f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+# DEBUG = True
 
-# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1 localhost').split(' ')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1 localhost').split(' ')
+# ALLOWED_HOSTS = []
 SECURE_CROSS_ORIGIN_OPENER_POLICY= "same-origin-allow-popups"
 
 MESSAGE_TAGS = {

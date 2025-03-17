@@ -91,9 +91,9 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=14, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
-    image = models.ImageField(upload_to='uploads/')
-    image_two = models.ImageField(upload_to='uploads/', default='files/images/banner-01.jpg')
-    image_three = models.ImageField(upload_to='uploads/', default='files/images/banner-01.jpg')
+    image = models.ImageField(upload_to='upload/')
+    image_two = models.ImageField(upload_to='upload/', default='files/images/banner-01.jpg')
+    image_three = models.ImageField(upload_to='upload/', default='files/images/banner-01.jpg')
     is_featured = models.BooleanField(default=True)
     is_available = models.BooleanField(default=True)
 

@@ -39,11 +39,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 # DEBUG = True
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
-=======
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
->>>>>>> 9eb133e (Used poetry)
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1 localhost').split(' ')
 # ALLOWED_HOSTS = []
 SECURE_CROSS_ORIGIN_OPENER_POLICY= "same-origin-allow-popups"

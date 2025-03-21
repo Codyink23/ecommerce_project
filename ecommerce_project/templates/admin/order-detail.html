@@ -1,0 +1,186 @@
+{% extends 'dashboard/base2.html' %}
+
+{% load static %}
+
+{% block title %}
+Orders
+{% endblock title %}
+
+{% block content %}
+<div class="container  my-5">
+
+    <div class="row ">
+        <div class=" col-md-7">
+            <h3 class="">Order Detail</h3>
+            <p>Details for Order Id: {{order.oid}}</p>
+            <p></p>
+        </div>
+        <div class="col-lg-5 ">
+            <form action="{% url 'selleradmin:change-status' order.id %}" method="POST">
+                <div class="row">
+
+
+                    <div class="col-md-6">
+                        <select name="status" class="form-select mr-4">
+                            <option value="processing">Change Order Status</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Save</button>
+
+                    </div>
+                </div>
+
+            </form>
+
+
+
+        </div>
+        <div class="col-lg-12 my-4 d-flex align-items-stretch">
+            <div class="card my-5 w-100">
+                <div class="card-body p-4">
+                    <h4 class="card-title fw-semibold mb-4">Recent Orders</h4>
+                    <div class="row py-3">
+                        <div class="col-md-4 d-flex">
+                            <div>
+                                <i style="font-size: 40px;" class="fa-solid fa-circle-user mx-2 text-success"></i>
+
+                            </div>
+                            <div>
+                                <h3> Customer</h3>
+                                <p>Name: {{ order.full_name }}</p>
+                                <p>Email: {{ order.email }}</p>
+                                <p>Phone: {{ order.phone }}</p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 d-flex">
+                            <div>
+                                <i style="font-size: 30px;" class="fa-solid fa-van-shuttle mx-2 text-success"></i>
+
+                            </div>
+                            <div>
+                                <h3>Order Info</h3>
+                                <p>Shipping Method: {{ order.shipping_method }}</p>
+                                <p>Order Id: #{{ order.oid }}</p>
+                                <p>Order Status: {{ order.product_status| title }}</p>
+                                <p>Payment Status:
+                                    {% if order.paid_status == true %}
+                                    Paid
+
+                                    {% else %}
+                                    Not Paid
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex">
+                            <div>
+                                <i style="font-size: 40px;" class="fa-solid fa-location-dot mx-2 text-success"></i>
+
+                            </div>
+                            <div>
+                                <h3>Deliver To</h3>
+                                <p>Address: {{ order.address }}</p>
+                                <p>City: {{ order.city }}</p>
+                                <p>State: {{ order.state }}</p>
+                                <p>Country: {{ order.country }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-7 table-responsive mb-5">
+
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead class="bg-secondary text-dark">
+                                            <tr>
+                                                <th>Products</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="align-middle">
+                                            {% for order in order_items %}
+                                            <tr>
+                                                <td class="align-middle"><img src="{{order.image}}" alt="An image"
+                                                        style="width: 50px;">
+                                                    {{order.item}}
+                                                </td>
+                                                <td class="align-middle"> &#8358;{{order.price}}
+                                                </td>
+                                                <td class="align-middle"> {{order.quantity}}
+                                                </td>
+                                                <td class="align-middle"> &#8358;{{order.total}}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="card border-secondary mb-5">
+                                        <div class="card-header bg-secondary border-0">
+                                            <h4 class="font-weight-semi-bold m-0 d-flex justify-content-end">Total</h4>
+                                        </div>
+                                        <div class="card-body">
+
+
+                                            <!-- <div class="d-flex justify-content-end mb-1 pt-1">
+                                                <h6 class="font-weight-medium">$345</h6>
+                                            </div> -->
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <h5 class="font-weight-medium">Tax</h5>
+                                                <h6 class="font-weight-medium">&#8358;0.00</h6>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <h5 class="font-weight-medium">Shipping</h5>
+                                                <h6 class="font-weight-medium">Free</h6>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <h5 class="">Discount</h5>
+                                                <h6 class="font-weight-medium">&#8358;{{ order.saved }}</h6>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="font-weight-medium">Grand Total</h5>
+                                                <h4 class="font-weight-medium">&#8358;{{ order.price }}</h4>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="font-weight-medium">Status</h6>
+                                                <h6 class="font-weight-medium"> {% if order.paid_status == true %}
+                                                    Paid
+
+                                                    {% else %}
+                                                    Not Paid
+                                                    {% endif %}</h6>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="card-footer border-secondary bg-transparent">
+                                            <div class="d-flex justify-content-between mt-2">
+                                                <h5 class="font-weight-bold">Total</h5>
+                                                <h5 class="font-weight-bold"></h5>
+                                            </div>
+
+                                        </div> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
